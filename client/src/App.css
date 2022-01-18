@@ -1,0 +1,11 @@
+:root {
+  --primary-color: #6b7280;
+}
+
+.App {
+  width: 100%;
+}
+
+.content {
+  width: min(95%, 1200px);
+}
