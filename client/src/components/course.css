@@ -1,12 +1,11 @@
 .course {
   width: 100%;
   /*background: red;*/
-  overflow: hidden;
+  margin-bottom: 520px;
 }
 
 .course-item-typeclass {
   position: absolute;
-  z-index: 2;
   top: 10px;
   left: 10px;
   border-radius: 9999px;
@@ -14,6 +13,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
+  z-index: 2;
 }
 
 .beginner {
@@ -51,8 +51,7 @@
 
 .course-item-image > div:last-child {
   position: absolute;
-  bottom: -30%;
-  /*bottom: 0;*/
+  bottom: -25%;
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 30px);
@@ -60,6 +59,8 @@
   border-radius: 8px;
   background: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: all 0.3s ease-in-out;
+  z-index: 5;
 }
 
 .course-item-image > div:last-child h3 {
@@ -68,7 +69,7 @@
   line-height: 30px;
 }
 
-.course-item-image > div:last-child .course-item-desc {
+.course-item-image > div:last-child span {
   font-size: 14px;
   line-height: 24px;
 }
@@ -82,6 +83,12 @@
   transition: all 0.3s ease-in-out;
 }
 
-.course-item:hover .course-item-image div img {
+.course-item:hover > .course-item-image div img {
   transform: scale(1.1);
+}
+
+.course-item:hover > .course-item-image div:last-child {
+  bottom: -30%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20%);
 }

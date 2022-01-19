@@ -3,6 +3,8 @@ const styleQuote = {
   color: "#111827",
   textAlign: "center",
   marginBottom: "120px",
+  //120px + 68px(height of header)
+  marginTop: "188px",
 };
 
 const styleQuoteTitle = {
