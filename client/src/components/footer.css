@@ -1,5 +1,6 @@
 :root {
   --footer-primary-color: #6b728c;
+  --footer-secondary-color: #9ca3af;
 }
 
 .footer {
@@ -47,7 +48,7 @@
 }
 
 .footer-title {
-  color: #9ca3af;
+  color: var(--footer-secondary-color);
   font-size: 17px;
   font-weight: 500;
   letter-spacing: 0.7px;
@@ -89,6 +90,7 @@
 .middlebar-menu-item a {
   text-decoration: none;
   color: var(--footer-primary-color);
+  font-size: 15px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -109,9 +111,28 @@
 }
 
 .footer-rightbar-quote {
-  color: #9ca3af;
+  color: var(--footer-secondary-color);
 }
 
 .footer-bottom {
-  padding-block: 40px;
+  padding-top: 40px;
+  padding-bottom: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--footer-secondary-color);
+}
+
+.footer-bottom-leftbar {
+  display: flex;
+  align-items: center;
+  /*background: red;*/
+}
+
+.footer-bottom-leftbar .icon {
+  font-size: 21.3333px;
+}
+
+.footer-bottom-leftbar .icon:not(:last-child) {
+  margin-right: 30px;
 }

@@ -1,5 +1,11 @@
 import "./footer.css";
 import logoGray from "../assets/logo-gray.svg";
+import {
+  FaLinkedin,
+  FaYoutube,
+  FaFacebookSquare,
+  FaGithub,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -74,8 +80,15 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <div className="footer-bottom-rightbar"></div>
-        <div className="footer-bottom-leftbar"></div>
+        <div className="footer-bottom-rightbar">
+          © 2017- 2022 Nomad Coders. All rights reserved.
+        </div>
+        <div className="footer-bottom-leftbar">
+          <FaLinkedin className="icon" />
+          <FaYoutube className="icon" />
+          <FaFacebookSquare className="icon" />
+          <FaGithub className="icon" />
+        </div>
       </div>
     </div>
   );

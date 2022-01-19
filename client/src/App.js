@@ -11,6 +11,8 @@ const styleContent = {
   zIndex: "1",
 };
 
+console.log("hello");
+
 function App() {
   return (
     <div className="App">
@@ -26,5 +28,3 @@ function App() {
 }
 
 export default App;
-
-console.log("my name is phan tan thang handsome");
