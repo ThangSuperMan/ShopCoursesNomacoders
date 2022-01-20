@@ -2,7 +2,6 @@ import logo from "../assets/logo.svg";
 
 const styleLogo = {
   height: "32px",
-  marginRight: "15px",
 };
 
 const styleLink = {
@@ -11,7 +10,7 @@ const styleLink = {
 
 const Logo = () => {
   return (
-    <a style={styleLink} href="/">
+    <a className="logoDesktop logoMobile" style={styleLink} href="/">
       <img style={styleLogo} src={logo} />
     </a>
   );

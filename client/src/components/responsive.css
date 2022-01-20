@@ -1,3 +1,41 @@
 .course-list {
-  background: red;
+  /*background: red;*/
+}
+
+/*Media queies*/
+@media screen and (max-width: 900px) {
+  .header-inner {
+    width: 100%;
+  }
+  .header-menu-item {
+    font-size: 13px;
+  }
+
+  .btn {
+    padding: 8px 25px;
+  }
+
+  .btn-mobile {
+    padding: 6px 23px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-inner {
+    display: none;
+  }
+
+  .header-mobile {
+    display: flex;
+  }
+
+  .content {
+    width: 100% !important;
+    /*background: red;*/
+    padding-inline: 15px;
+    /*padding-inline: 0 !important;*/
+  }
+  .inner-menu-item {
+    font-size: 13px;
+  }
 }
