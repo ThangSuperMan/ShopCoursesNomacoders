@@ -19,12 +19,22 @@
     font-size: 15px !important;
   }
 
-  .course-item {
-    height: 286px;
-  }
-
   .course-item-image {
     height: 100%;
+  }
+
+  .footer-inner {
+    flex-wrap: wrap;
+  }
+
+  .footer-leftbar,
+  .footer-middlebar {
+    width: 50%;
+  }
+
+  .footer-rightbar {
+    margin-inline: auto;
+    margin-top: 32px;
   }
 }
 
@@ -65,6 +75,18 @@
   .filter-bylevel,
   .filter-byprice {
     margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer-rightbar,
+  .footer-middlebar,
+  .footer-leftbar {
+    width: 100%;
+  }
+
+  .footer-middlebar {
+    margin-top: 32px;
   }
 }
 
@@ -151,6 +173,33 @@
     height: 68px !important;
   }
 
-  .filter-bylevel-class {
+  .course-list {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  .course {
+    margin-bottom: 224px;
+  }
+
+  .footer-bottom {
+    flex-wrap: wrap;
+    align-items: center;
+    padding-bottom: 48px;
+  }
+
+  .footer-bottom-rightbar,
+  .footer-bottom-leftbar {
+    width: 100%;
+  }
+
+  .footer-bottom-rightbar {
+    text-align: center;
+  }
+
+  .footer-bottom-leftbar {
+    margin-top: 32px;
+  }
+
+  .footer-bottom-leftbar {
   }
 }

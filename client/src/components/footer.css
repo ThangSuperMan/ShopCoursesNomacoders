@@ -127,13 +127,26 @@
 .footer-bottom-leftbar {
   display: flex;
   align-items: center;
-  /*background: red;*/
+  justify-content: center;
 }
 
-.footer-bottom-leftbar .icon {
+.footer-bottom-leftbar a {
+  display: block;
+  align-items: center;
+  text-decoration: none;
+  color: var(--footer-secondary-color);
+}
+
+.footer-bottom-leftbar a:not(:last-child) {
+  margin-right: 30px;
+}
+
+.footer-bottom-leftbar a .icon {
+  display: block;
+  align-items: center;
   font-size: 21.3333px;
 }
 
-.footer-bottom-leftbar .icon:not(:last-child) {
-  margin-right: 30px;
-}
+/*.footer-bottom-leftbar a .icon:not(:last-child) {*/
+/*margin-right: 30px;*/
+/*}*/

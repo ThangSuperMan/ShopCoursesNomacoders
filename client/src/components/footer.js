@@ -7,6 +7,12 @@ import {
   FaGithub,
 } from "react-icons/fa";
 
+const styleIconsFooter = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
 const Footer = () => {
   return (
     <div className="footer">
@@ -84,10 +90,18 @@ const Footer = () => {
           © 2017- 2022 Nomad Coders. All rights reserved.
         </div>
         <div className="footer-bottom-leftbar">
-          <FaLinkedin className="icon" />
-          <FaYoutube className="icon" />
-          <FaFacebookSquare className="icon" />
-          <FaGithub className="icon" />
+          <a href="#">
+            <FaLinkedin className="icon" />
+          </a>
+          <a href="#">
+            <FaYoutube className="icon" />
+          </a>
+          <a href="#">
+            <FaFacebookSquare className="icon" />
+          </a>
+          <a href="#">
+            <FaGithub className="icon" />
+          </a>
         </div>
       </div>
     </div>
