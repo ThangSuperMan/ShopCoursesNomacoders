@@ -123,9 +123,9 @@ const Filter = () => {
         <div className="filter-bytech">
           <h3 className="title">Filter by Tech</h3>
           <div className="filter-bytech-list">
-            {listTech.map((tech) => {
+            {listTech.map((tech, index) => {
               return (
-                <div className="filter-bytech-item">
+                <div key={tech + "-" + index} className="filter-bytech-item">
                   <img src={tech.imageTech} />
                   <span>{tech.nameTech}</span>
                 </div>

@@ -11,13 +11,6 @@ const app = express();
 //res.status(200).send("welcome to homepage");
 //});
 
-// Allow all origin access to the resources of server side
-app.use(
-	cors({
-		origin: "*",
-	})
-);
-
 app.use(
 	cors({
 		origin: "http://localhost:3000",

@@ -1,12 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import Axios from "axios";
 import Header from "./components/header";
 import Quote from "./components/quote";
 import Filter from "./components/filter";
 import Course from "./components/course";
 import Footer from "./components/footer";
 import "./components/responsive.css";
-import Axios from "axios";
+import "./components/course.css";
 
 const styleContent = {
   width: "min(90%, 1200px)",
@@ -16,23 +17,19 @@ const styleContent = {
   overflow: "hidden",
 };
 
-function readDataBackend() {
-  console.log("click  ");
-  Axios.get("http://localhost:3001").then((response) => {
-    console.log(response);
-    console.log(response.data);
-  });
-}
-
 function App() {
+  const [courses, setCourses] = useState([]);
+
   useEffect(() => {
-    console.log("use effect ");
+    const baseURL = "http://localhost:3001";
 
-    //const baseURL = "https://localhot:3005";
+    Axios.get(baseURL).then((res) => {
+      const listCourses = res.data;
 
-    //Axios.get("http://localhost:3005/").then((res) => {
-    //console.log(res);
-    //});
+      listCourses.forEach((item) => {
+        setCourses((list) => [...list, item]);
+      });
+    });
   }, []);
 
   return (
@@ -41,9 +38,24 @@ function App() {
       <div className="content" style={styleContent}>
         <Quote />
         <Filter />
-        <Course />
+        <div className="course">
+          <div className="course-list">
+            {courses.map((course, index) => {
+              return (
+                <Course
+                  key={`${course.name}-${index}`}
+                  name={course.name}
+                  price={course.price}
+                  typePrice={course.typePrice}
+                  level={course.level}
+                  description={course.description}
+                  imageName={course.imageName}
+                />
+              );
+            })}
+          </div>
+        </div>
         <Footer />
-        <button onClick={readDataBackend}>read data backend</button>
       </div>
     </div>
   );
