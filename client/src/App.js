@@ -32,12 +32,21 @@ function App() {
     });
   }, []);
 
+  const callback = (childData) => {
+    let listCourses = [];
+    childData.forEach((item) => {
+      listCourses.push(item);
+    });
+
+    setCourses(listCourses);
+  };
+
   return (
     <div className="App">
       <Header />
       <div className="content" style={styleContent}>
         <Quote />
-        <Filter />
+        <Filter parentCallback={callback} />
         <div className="course">
           <div className="course-list">
             {courses.map((course, index) => {

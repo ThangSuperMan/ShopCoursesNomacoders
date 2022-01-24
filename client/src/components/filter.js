@@ -1,4 +1,5 @@
 import "./filter.css";
+import Axios from "axios";
 import { useState, useEffect } from "react";
 
 //Images for techs
@@ -18,7 +19,7 @@ import imageTechFirebase from "../assets/tech-img13.png";
 import imageTechReactNative from "../assets/tech-img14.png";
 import imageTechNextJS from "../assets/tech-img15.png";
 
-const Filter = () => {
+const Filter = ({ parentCallback }) => {
   const [listTech, setListTech] = useState([
     {
       typeTech: "javascript",
@@ -97,7 +98,36 @@ const Filter = () => {
     },
   ]);
 
-  useEffect(() => {}, []);
+  const [baseURLFetchCourses, setBaseURLFetchCourses] = useState(
+    "http://localhost:3001/api/fetch_courses"
+  );
+
+  const hightlightBtnCourse = (e) => {
+    const beginnerBtn = e.target;
+    const allCourseBtn = e.target.parentNode.children;
+
+    Array.from(allCourseBtn).forEach((item) => {
+      if (item.className === "active") {
+        item.classList.remove("active");
+      }
+    });
+
+    if (beginnerBtn.className === "active") {
+      beginnerBtn.classList.remove("active");
+    } else {
+      beginnerBtn.classList.add("active");
+    }
+  };
+
+  const sendDataToParentComponent = (data) => {
+    parentCallback(data);
+  };
+
+  const renderCoursesByLevel = async (e) => {
+    const level = e.target.children[0].value;
+    const coursesByLevel = await Axios.get(`${baseURLFetchCourses}/${level}`);
+    sendDataToParentComponent(coursesByLevel.data);
+  };
 
   return (
     <div className="filter">
@@ -105,9 +135,33 @@ const Filter = () => {
         <div className="filter-bylevel">
           <h3 className="title">Filter by Level</h3>
           <div className="filter-bylevel-class btn-class">
-            <span>Beginner</span>
-            <span>Middle class</span>
-            <span>advanced</span>
+            <span
+              onClick={(e) => {
+                hightlightBtnCourse(e);
+                renderCoursesByLevel(e);
+              }}
+            >
+              <input type="hidden" value="beginner" />
+              Beginner
+            </span>
+            <span
+              onClick={(e) => {
+                hightlightBtnCourse(e);
+                renderCoursesByLevel(e);
+              }}
+            >
+              <input type="hidden" value="middle" />
+              Middle class
+            </span>
+            <span
+              onClick={(e) => {
+                hightlightBtnCourse(e);
+                renderCoursesByLevel(e);
+              }}
+            >
+              <input type="hidden" value="advance" />
+              advanced
+            </span>
           </div>
         </div>
 
