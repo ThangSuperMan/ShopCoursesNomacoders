@@ -19,6 +19,16 @@
   text-align: center;
 }
 
+.filter-byprice span:first-child.active {
+  background: #dcfce7;
+  color: #22c55e;
+}
+
+.filter-byprice span:last-child.active {
+  background: #dbeafe !important;
+  color: #1d4ed8 !important;
+}
+
 .filter-byprice-class span:first-child {
   margin-right: 10px;
 }
@@ -47,6 +57,7 @@
   background: #dcfce7;
   color: #22c55e;
 }
+
 .btn-class span:nth-child(3).active {
   background: #f3e8ff;
   color: #a855f7;
@@ -66,6 +77,22 @@
 .title {
   font-weight: 500;
   margin-bottom: 25px;
+}
+
+.filter-bylevel span {
+  text-align: center;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.filter-byprice > span {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.filter-bylevel span .icon,
+.filter-byprice span .icon {
+  font-weight: 500;
 }
 
 .filter-rightbar {

@@ -19,10 +19,9 @@ const styleContent = {
 
 function App() {
   const [courses, setCourses] = useState([]);
+  const [baseURL, setBaseURL] = useState("http://localhost:3001");
 
   useEffect(() => {
-    const baseURL = "http://localhost:3001";
-
     Axios.get(baseURL).then((res) => {
       const listCourses = res.data;
 
@@ -32,12 +31,13 @@ function App() {
     });
   }, []);
 
-  const callback = (childData) => {
+  const callback = (childDataOfCourses) => {
     let listCourses = [];
-    childData.forEach((item) => {
+    childDataOfCourses.forEach((item) => {
       listCourses.push(item);
     });
 
+    // Setup the new courses after click the level course want to be learn
     setCourses(listCourses);
   };
 

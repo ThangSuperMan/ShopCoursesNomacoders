@@ -1,6 +1,7 @@
 import "./filter.css";
 import Axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
+import { FaDribbble, FaRegTimesCircle } from "react-icons/fa";
 
 //Images for techs
 import imageTechJavascript from "../assets/tech-img1.png";
@@ -98,24 +99,43 @@ const Filter = ({ parentCallback }) => {
     },
   ]);
 
+  // useState
   const [baseURLFetchCourses, setBaseURLFetchCourses] = useState(
     "http://localhost:3001/api/fetch_courses"
   );
 
-  const hightlightBtnCourse = (e) => {
-    const beginnerBtn = e.target;
-    const allCourseBtn = e.target.parentNode.children;
+  const [activeRenderAllCoureses, setActiveRenderAllCourses] = useState(true);
+  const [activeRenderAllCoursesByPrice, setActiveRenderAllCoursesByPrice] =
+    useState(true);
 
-    Array.from(allCourseBtn).forEach((item) => {
+  // useRef
+  const beginnerBtnRef = useRef();
+  const middleBtnRef = useRef();
+  const advanceBtnRef = useRef();
+  const freeBtnRef = useRef();
+  const payBtnRef = useRef();
+
+  // Fucntions
+
+  const removeActiveClass = (buttons) => {
+    Array.from(buttons).forEach((item) => {
       if (item.className === "active") {
         item.classList.remove("active");
       }
     });
+  };
 
-    if (beginnerBtn.className === "active") {
-      beginnerBtn.classList.remove("active");
+  const hightlightBtnCourse = (e) => {
+    const buttonChooseLevel = e.target;
+    const allCourseBtn = e.target.parentNode.children;
+
+    removeActiveClass(allCourseBtn);
+
+    if (buttonChooseLevel.className === "active") {
+      buttonChooseLevel.classList.remove("active");
     } else {
-      beginnerBtn.classList.add("active");
+      setActiveRenderAllCourses(false);
+      buttonChooseLevel.classList.add("active");
     }
   };
 
@@ -125,17 +145,84 @@ const Filter = ({ parentCallback }) => {
 
   const renderCoursesByLevel = async (e) => {
     const level = e.target.children[0].value;
-    const coursesByLevel = await Axios.get(`${baseURLFetchCourses}/${level}`);
+    const URL = "http://localhost:3001/api/fetch_courses/level";
+    const coursesByLevel = await Axios.get(`${URL}/${level}`);
     sendDataToParentComponent(coursesByLevel.data);
+  };
+
+  const getOutFilterByClass = () => {
+    setActiveRenderAllCourses(true);
+
+    beginnerBtnRef.current.classList.remove("active");
+    middleBtnRef.current.classList.remove("active");
+    advanceBtnRef.current.classList.remove("active");
+
+    // Fetch all courses with all levels
+    const baseURL = "http://localhost:3001";
+    Axios.get(baseURL).then((data) => {
+      const allCourses = data.data;
+      sendDataToParentComponent(allCourses);
+    });
+  };
+
+  const getOutFilterByPrice = (e) => {
+    setActiveRenderAllCoursesByPrice(false);
+
+    freeBtnRef.current.classList.remove("active");
+    payBtnRef.current.classList.remove("active");
+
+    // URL homepage is also the place can fetch all courses
+    Axios.get("http://localhost:3001").then((data) => {
+      const courses = data.data;
+      sendDataToParentComponent(courses);
+    });
+  };
+
+  const fetchCoursesByTypePrice = (typePrice) => {
+    // typePrice props in server mysql have been typed boolean
+    // typePrice = 1(true) means must be pay money, typePrice = 0(false) means free
+    const URL = "http://localhost:3001/api/fetch_courses/type_price";
+
+    Axios.get(`${URL}/${typePrice}`).then((data) => {
+      console.log("data from type price server");
+      parentCallback(data.data);
+    });
+  };
+
+  const hightlightBtnPriceCourse = (e) => {
+    const allBtnTypePrice = e.target.parentNode.children;
+    const buttonTypePrice = e.target;
+    const typePrice = e.target.children[0].value;
+
+    setActiveRenderAllCoursesByPrice(false);
+    removeActiveClass(allBtnTypePrice);
+
+    if (buttonTypePrice.className === "active") {
+      buttonTypePrice.classList.remove("active");
+    } else {
+      buttonTypePrice.classList.add("active");
+    }
+
+    fetchCoursesByTypePrice(typePrice);
   };
 
   return (
     <div className="filter">
       <div className="filter-leftbar">
         <div className="filter-bylevel">
-          <h3 className="title">Filter by Level</h3>
+          {activeRenderAllCoureses ? (
+            <h3 className="title">Filter by level</h3>
+          ) : (
+            <span>
+              <FaRegTimesCircle
+                onClick={getOutFilterByClass}
+                className="icon"
+              />
+            </span>
+          )}
           <div className="filter-bylevel-class btn-class">
             <span
+              ref={beginnerBtnRef}
               onClick={(e) => {
                 hightlightBtnCourse(e);
                 renderCoursesByLevel(e);
@@ -145,6 +232,7 @@ const Filter = ({ parentCallback }) => {
               Beginner
             </span>
             <span
+              ref={middleBtnRef}
               onClick={(e) => {
                 hightlightBtnCourse(e);
                 renderCoursesByLevel(e);
@@ -154,6 +242,7 @@ const Filter = ({ parentCallback }) => {
               Middle class
             </span>
             <span
+              ref={advanceBtnRef}
               onClick={(e) => {
                 hightlightBtnCourse(e);
                 renderCoursesByLevel(e);
@@ -166,10 +255,25 @@ const Filter = ({ parentCallback }) => {
         </div>
 
         <div className="filter-byprice">
-          <h3 className="title">Filter by Level</h3>
+          {activeRenderAllCoursesByPrice ? (
+            <h3 className="title">Filter by Price</h3>
+          ) : (
+            <span>
+              <FaRegTimesCircle
+                onClick={getOutFilterByPrice}
+                className="icon"
+              />
+            </span>
+          )}
           <div className="filter-byprice-class btn-class">
-            <span>free</span>
-            <span>pay</span>
+            <span ref={freeBtnRef} onClick={hightlightBtnPriceCourse}>
+              <input type="hidden" value="0" />
+              free
+            </span>
+            <span ref={payBtnRef} onClick={hightlightBtnPriceCourse}>
+              <input type="hidden" value="1" />
+              pay
+            </span>
           </div>
         </div>
       </div>

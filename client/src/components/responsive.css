@@ -1,7 +1,3 @@
-.course-list {
-  /*background: red;*/
-}
-
 /*Media queies*/
 @media screen and (max-width: 1280px) {
   .course-list {
@@ -16,7 +12,11 @@
   }
 
   .course-item-title {
-    font-size: 15px !important;
+    font-size: 17px !important;
+  }
+
+  .course-item-desc {
+    font-size: 14px !important;
   }
 
   .course-item-image {
@@ -55,7 +55,6 @@
   }
 
   .filter-bytech-list {
-    /*background: red;*/
     width: 100%;
   }
 
@@ -75,6 +74,10 @@
   .filter-bylevel,
   .filter-byprice {
     margin-bottom: 50px;
+  }
+
+  .filter-bytech-item {
+    margin-inline: auto;
   }
 }
 
@@ -118,7 +121,6 @@
 
   .content {
     width: 100% !important;
-    /*background: red;*/
     padding-inline: 15px;
   }
   .inner-menu-item {
@@ -163,7 +165,6 @@
   .filter-bytech-item img {
     width: 56px !important;
     height: 56px !important;
-
     object-fit: cover;
     transition: width 0.2s, height 0.2s linear;
   }
@@ -199,7 +200,14 @@
   .footer-bottom-leftbar {
     margin-top: 32px;
   }
+}
 
-  .footer-bottom-leftbar {
+@media screen and (max-width: 400px) {
+  .filter-bylevel-class span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 15px;
+    /*font-weight: 400;*/
   }
 }

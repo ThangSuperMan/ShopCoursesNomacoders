@@ -49,6 +49,15 @@
   border-radius: 8px;
 }
 
+.course-item-image div {
+  text-align: center;
+}
+
+.course-item-title,
+.cousre-item-desc {
+  text-transform: capitalize;
+}
+
 .course-item-image > div:last-child {
   position: absolute;
   bottom: -25%;

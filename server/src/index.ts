@@ -6,17 +6,11 @@ import cors from "cors";
 
 const app = express();
 
-//app.get("/", (req: Request, res: Response, next: NextFunction) => {
-//console.log("homepage");
-//res.status(200).send("welcome to homepage");
-//});
-
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: "*",
 	})
 );
-
 app.use("/", homepageRouter);
 
 app.use(errorController.get404);

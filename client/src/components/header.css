@@ -93,7 +93,6 @@
 
 .header-mobile-logo {
   text-align: center;
-  /*margin-right: 0 !important;*/
 }
 
 .header-mobile-list {
@@ -111,9 +110,6 @@
   padding: 8px 16px 8px 12px;
   border-left: 4px solid #fff;
   transition: all 0.2s linear;
-}
-
-.header-mobile-list li:not(:last-child) {
   margin-bottom: 15px;
 }
 

@@ -31,9 +31,11 @@ export default class Course {
 		return db.execute("SELECT * FROM courses");
 	}
 
-	public static fetchAllCoursesFollowByLevel(levelCourse: any) {
-		// Grab the value string inside the object
-		const level = levelCourse.params;
-		return db.execute(`SELECT * FROM courses WHERE level = '${level}'`);
+	public static fetchAllCoursesFollowByLevel(levelCourse: string) {
+		return db.execute(`SELECT * FROM courses WHERE level = '${levelCourse}'`);
+	}
+
+	public static fetAllCoursesByTypePrice(typePrice: number) {
+		return db.execute(`SELECT * FROM courses WHERE typePrice = ${typePrice}`);
 	}
 }
