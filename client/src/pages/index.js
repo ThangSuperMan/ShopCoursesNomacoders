@@ -14,7 +14,10 @@ const styleContent = {
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
-  const [baseURL, setBaseURL] = useState("http://localhost:3001");
+  //const [baseURL, setBaseURL] = useState("http://localhost:3001");
+  const [baseURL, setBaseURL] = useState(
+    "https://shopcourses-filter.herokuapp.com"
+  );
 
   useEffect(() => {
     Axios.get(baseURL).then((res) => {
