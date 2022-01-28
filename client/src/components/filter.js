@@ -166,7 +166,7 @@ const Filter = ({ parentCallback }) => {
   };
 
   const getOutFilterByPrice = (e) => {
-    setActiveRenderAllCoursesByPrice(false);
+    setActiveRenderAllCoursesByPrice(true);
 
     freeBtnRef.current.classList.remove("active");
     payBtnRef.current.classList.remove("active");

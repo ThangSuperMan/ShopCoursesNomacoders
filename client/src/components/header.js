@@ -31,7 +31,7 @@ const Header = () => {
 
         <ul ref={menuMobileRef} className="header-mobile-list">
           <li>
-            <a href="#">Login</a>
+            <a href="/login">Login</a>
           </li>
           <li>
             <a href="#">Courses</a>
